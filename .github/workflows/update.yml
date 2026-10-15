@@ -22,15 +22,26 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      # Used to fall back to the last live copy of a page if its feed fails
+      SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Build the news block
+      - name: Build the news blocks
         run: node generate.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Flag any feed that failed
+        if: always()
+        run: |
+          if [ -f build-failures.txt ]; then
+            echo "::error::One or more feeds failed. Pages that could be kept were kept."
+            cat build-failures.txt
+            exit 1
+          fi
