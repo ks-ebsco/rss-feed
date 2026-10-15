@@ -69,23 +69,26 @@ function formatDate(d) {
 const STYLE = `
   :root { --link:#136a8a; --text:#333; --border:#d6d6d6; --footer:#f7f7f7; }
   * { box-sizing: border-box; }
-  body { margin:0; font-family: Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--text); background:transparent; }
+  html, body { margin:0; overflow:hidden; } /* no scrollbars inside the iframe */
+  body { font-family: Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--text); background:transparent; }
   .box { border:1px solid var(--border); border-radius:3px; overflow:hidden; background:#fff; }
   ul { list-style:none; margin:0; padding:0; }
   li { padding:10px 10px 9px; border-bottom:1px solid var(--border); }
-  a { color:var(--link); text-decoration:none; font-size:16px; line-height:1.35; }
+  /* Titles stay on one line and end with an ellipsis when too long */
+  .title { display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  a { color:var(--link); text-decoration:none; font-size:16px; line-height:22px; }
   a:hover, a:focus-visible { text-decoration:underline; }
   a:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
-  .date { margin-top:6px; font-size:13px; }
-  .more { background:var(--footer); padding:10px; text-align:right; }
-  .more a { font-size:13px; }
+  .date { margin-top:5px; font-size:13px; line-height:16px; white-space:nowrap; }
+  .more { background:var(--footer); padding:10px; text-align:right; white-space:nowrap; }
+  .more a { font-size:13px; line-height:16px; }
 `;
 
 function render(items) {
   const lis = items
     .map(
       (i) =>
-        `<li><a href="${esc(i.link)}" rel="noopener">${esc(i.title)}</a>` +
+        `<li><a class="title" href="${esc(i.link)}" rel="noopener" title="${esc(i.title)}">${esc(i.title)}</a>` +
         `<div class="date">${esc(formatDate(i.date))}</div></li>`
     )
     .join("");
