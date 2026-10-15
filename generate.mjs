@@ -70,7 +70,7 @@ const STYLE = `
   :root { --link:#136a8a; --text:#333; --border:#d6d6d6; --footer:#f7f7f7; }
   * { box-sizing: border-box; }
   html, body { margin:0; overflow:hidden; } /* no scrollbars inside the iframe */
-  body { font-family: Inter, system-ui, sans-serif; color:var(--text); background:transparent; }
+  body { font-family: Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--text); background:transparent; }
   .box { border:1px solid var(--border); border-radius:3px; overflow:hidden; background:#fff; }
   ul { list-style:none; margin:0; padding:0; }
   li { padding:10px 10px 9px; border-bottom:1px solid var(--border); }
@@ -79,7 +79,7 @@ const STYLE = `
   a { color:var(--link); text-decoration:none; font-size:16px; line-height:22px; }
   a:hover, a:focus-visible { text-decoration:underline; }
   a:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
-  .date { margin-top:5px; font-size:14px; line-height:16px; white-space:nowrap; }
+  .date { margin-top:5px; font-size:13px; line-height:16px; white-space:nowrap; }
   .more { background:var(--footer); padding:10px; text-align:right; white-space:nowrap; }
   .more a { font-size:13px; line-height:16px; }
 `;
