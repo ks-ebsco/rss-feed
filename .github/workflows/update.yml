@@ -2,7 +2,7 @@ name: Update news widget
 
 on:
   schedule:
-    - cron: "0 */4 * * *"   # every 4 hours, on the hour (UTC); GitHub may delay or skip runs
+    - cron: "17 */4 * * *"   # about every 4 hours (GitHub may delay or skip runs)  
     
   workflow_dispatch:          # lets you run it manually from the Actions tab
   push:
